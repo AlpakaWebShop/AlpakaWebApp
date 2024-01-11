@@ -181,3 +181,15 @@ C
 UserManagement/.env,b/f/bf6a5c9fc66a05dd8ba3ee51e7e4c2356d60ade8
 Q
 !UserManagement/CreateDatabase.sql,7/f/7f204b71d75c0023bd8bd0cdf8a78cedfadb5eb4
+U
+%AlpakaFrontend2/Service/ApiService.cs,d/4/d425672c7daed60f3f38b2597446fba3f1d92f0c
+V
+&RestAlpaka/LoginModels/LoginRequest.cs,1/6/16c262d095a3d4567c4ab13fe62b8ec59028d518
+Y
+)RestAlpaka/LoginModels/RegisterRequest.cs,c/2/c2236d08a57f7435e4d50774f8e2e38afc14fe62
+[
++RestAlpaka/Controllers/PaymetsController.cs,5/2/52722fd99198e9b73b3eef4df43b00cf27a29cf0
+X
+(RestAlpaka/Controllers/AuthController.cs,2/5/252f006bbf27f474e20295183331d0a539c03ca8
+W
+'RestAlpaka/Managers/UserLoginService.cs,3/c/3cff9486a347d1f42f117cb303a7d6ad378dda08
