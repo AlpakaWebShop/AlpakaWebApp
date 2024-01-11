@@ -1,4 +1,7 @@
-﻿
+﻿@inject ProtectedSessionStorage sessionStorage
+@using System.IdentityModel.Tokens.Jwt
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+
 <body>
     <div class="topnav">
         <div class="container text-center">
@@ -7,7 +10,10 @@
                 <a class="nav-link" href="/Alpakas">ALPAKAS</a>
                 <a class="nav-link" href="/Events">EVENTS</a>
                 <a class="nav-link" href="/AlpakaWalk">ALPAKA WALK</a>
-                <a class="nav-link" href="/CreateAlpakaEvent">Admin</a>
+                @if (isAdmin)
+                                {
+                                    <a class="nav-link" href="/CreateAlpakaEvent">Admin</a>
+                                }
             </div>
             <div class="topnav-right text-right">
                 <a class="login-icon" href="/login"><Icon Name="IconName.Cart2" /></a>
@@ -16,3 +22,24 @@
         </div>
     </div>
 </body>
+@code {
+    private bool isAdmin = false;
+    private const string TokenKey = "authToken"; 
+    private bool firstRender = true;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            this.firstRender = false;
+            var tokenResult = await sessionStorage.GetAsync<string>(TokenKey);
+            if (tokenResult.Success && !string.IsNullOrEmpty(tokenResult.Value))
+            {
+                var handler = new JwtSecurityTokenHandler();
+                var jwtSecurityToken = handler.ReadToken(tokenResult.Value) as JwtSecurityToken;
+                isAdmin = jwtSecurityToken?.Claims.Any(claim => claim.Type.Contains("role") && claim.Value.Equals("Admin")) ?? false;
+                StateHasChanged(); // Trigger a re-render now that we have the role
+            }
+        }
+    }
+}

@@ -193,3 +193,9 @@ X
 (RestAlpaka/Controllers/AuthController.cs,2/5/252f006bbf27f474e20295183331d0a539c03ca8
 W
 'RestAlpaka/Managers/UserLoginService.cs,3/c/3cff9486a347d1f42f117cb303a7d6ad378dda08
+I
+RestAlpaka/Model/Users.cs,6/6/66f35034e4d254514ec39451f986a6f7184de328
+X
+(RestAlpaka/Controllers/UserController.cs,1/6/165c31deeef3b6ecdf2657d3ab5911d0ce5445d8
+[
++UserManagement/appsettings.Development.json,a/b/abe6f2eb3e419bd65df565ffe5bc8665d6858e10
