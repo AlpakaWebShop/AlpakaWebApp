@@ -140,7 +140,7 @@
     }
 
 
-    private void CreateAlpaka()
+    private async void CreateAlpaka()
     {
         await ApiService.CreateAsync("api/Alpaka", alpaka);
         alpakaSuccessMessage = "Alpaka created successfully!";

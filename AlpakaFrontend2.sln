@@ -7,10 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlpakaFrontend2", "AlpakaFr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestAlpaka", "RestAlpaka\RestAlpaka.csproj", "{5FA27C21-A146-4746-8597-29C403EB51F8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestAlpakaMongo", "RestAlpakaMongo\RestAlpakaMongo.csproj", "{E119BB4F-BE18-4C0D-B697-C57A336F8E39}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestNeo4j", "..\app-dotnet\RestNeo4j\RestNeo4j.csproj", "{9B1EFE96-BACB-4376-8A04-DE1E5975FBA3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement", "UserManagement\UserManagement.csproj", "{10B24FA8-15E0-4D4B-8E68-6CAE9D24092D}"
 EndProject
 Global
@@ -27,14 +23,6 @@ Global
 		{5FA27C21-A146-4746-8597-29C403EB51F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FA27C21-A146-4746-8597-29C403EB51F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FA27C21-A146-4746-8597-29C403EB51F8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E119BB4F-BE18-4C0D-B697-C57A336F8E39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E119BB4F-BE18-4C0D-B697-C57A336F8E39}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E119BB4F-BE18-4C0D-B697-C57A336F8E39}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E119BB4F-BE18-4C0D-B697-C57A336F8E39}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9B1EFE96-BACB-4376-8A04-DE1E5975FBA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B1EFE96-BACB-4376-8A04-DE1E5975FBA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B1EFE96-BACB-4376-8A04-DE1E5975FBA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B1EFE96-BACB-4376-8A04-DE1E5975FBA3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{10B24FA8-15E0-4D4B-8E68-6CAE9D24092D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{10B24FA8-15E0-4D4B-8E68-6CAE9D24092D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10B24FA8-15E0-4D4B-8E68-6CAE9D24092D}.Release|Any CPU.ActiveCfg = Release|Any CPU
