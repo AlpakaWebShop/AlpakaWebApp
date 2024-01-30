@@ -9,7 +9,7 @@ namespace RestAlpaka.Model
 
         public int Location_id { get; set; }
 
-
+        public bool Public { get; set; }
         public DateTime Event_date { get; set; }
         public int Capacity { get; set; }
         public string Description { get; set; }

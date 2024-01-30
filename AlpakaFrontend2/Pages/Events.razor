@@ -4,46 +4,59 @@
 @using System.Net.Http
 @using RestAlpaka.Model
 @inject HttpClient Http
-@using Microsoft.AspNetCore.Components.Routing
 @inject NavigationManager NavigationManager
+@inject ProtectedSessionStorage sessionStorage
+@using System.IdentityModel.Tokens.Jwt
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
 
 <h1>Upcoming Events</h1>
 
 @if (events == null)
 {
-  <p> Loading </p>
+    <p>Loading...</p>
 }
 else
 {
-       @foreach ( var ev in events)
+    @foreach (var ev in events)
     {
         <div class="event">
             <h2>@ev.Name</h2>
             <p>@ev.Description</p>
-            <p> @ev.Description</p>
             <button @onclick="() => BookEvent(ev)">Book Now</button>
         </div>
     }
 }
 
-
-
 @code {
-
-
-    private Alpaka[]? alpakas;
     private Event[]? events;
-
+    private const string TokenKey = "authToken";
+    private bool isAdmin;
 
     protected override async Task OnInitializedAsync()
     {
-        alpakas = await ApiService.GetTAsync<Alpaka[]>("api/Alpaka"); 
-        events = await ApiService.GetTAsync<Event[]>("Event");
+        await CheckAdminStatus();
+        var allEvents = await ApiService.GetTAsync<Event[]>("Event");
+        events = isAdmin ? allEvents : allEvents.Where(ev => ev.Public).ToArray();
     }
-   
-    void BookEvent(Event ev) 
+
+    private async Task CheckAdminStatus()
+    {
+        var tokenResult = await sessionStorage.GetAsync<string>(TokenKey);
+        if (tokenResult.Success && !string.IsNullOrEmpty(tokenResult.Value))
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var token = tokenResult.Value;
+
+            // Use ReadJwtToken for explicit handling of JWT strings
+            var jwtSecurityToken = handler.ReadJwtToken(token);
+
+            isAdmin = jwtSecurityToken?.Claims.Any(claim => claim.Type.Contains("role") && claim.Value.Equals("Admin")) ?? false;
+        }
+    }
+
+
+    void BookEvent(Event ev)
     {
         NavigationManager.NavigateTo("/booking");
     }
 }
-

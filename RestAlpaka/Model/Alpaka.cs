@@ -6,6 +6,7 @@ namespace RestAlpaka.Model
     {
         [Key]
         public int alpaka { get; set; }
+
         public string Alpaka_name { get; set; }
         public string color { get; set; }
 

@@ -5,7 +5,7 @@ namespace RestAlpaka.DTO
     public class EventDTO
     {
         public int Location_id { get; set; }
-
+        public bool Public { get; set; }
         [DataType(DataType.Date)]
         public DateTime Event_date { get; set; }
 

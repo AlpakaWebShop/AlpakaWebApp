@@ -76,6 +76,12 @@
         <ValidationMessage For="@(() => eventModel.Location_id)" />
     </div>
 
+<div class="form-group">
+    <label for="Public">Event Public:</label>
+    <InputCheckbox id="Public" @bind-Value="eventModel.Public" />
+    <ValidationMessage For="@(() => eventModel.Public)" />
+</div>
+
 
     <div class="form-group">
         <label for="Capacity">Capacity:</label>
@@ -105,56 +111,17 @@
     private Event eventModel = new Event();
     private string alpakaSuccessMessage;
     private string eventSuccessMessage;
-    private const string TokenKey = "authToken"; 
-    private bool isAuthenticated = false;
-    private bool isAdmin = false;
-    private bool firstRender = true;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (this.firstRender)
-        {
-            this.firstRender = false; // Ensure this runs only once
-            var tokenResult = await sessionStorage.GetAsync<string>(TokenKey);
-            if (tokenResult.Success && !string.IsNullOrEmpty(tokenResult.Value))
-            {
-                var handler = new JwtSecurityTokenHandler();
-                var jwtSecurityToken = handler.ReadToken(tokenResult.Value) as JwtSecurityToken;
-                isAdmin = jwtSecurityToken?.Claims.Any(claim => claim.Type.Contains("role") && claim.Value.Equals("Admin")) ?? false;
-                isAuthenticated = true;
-
-                if (!isAdmin)
-                {
-                    // Redirect non-admin users
-                    NavigationManager.NavigateTo("not-authorized");
-                }
-
-                StateHasChanged(); // Trigger a re-render
-            }
-            else
-            {
-                // Not authenticated
-                isAuthenticated = false;
-                NavigationManager.NavigateTo("login");
-            }
-        }
-    }
 
     private async void CreateAlpaka()
     {
-        if (isAdmin)
-        {
-            await ApiService.CreateAsync("api/Alpaka", alpaka);
-            alpakaSuccessMessage = "Alpaka created successfully!";
-        }
+        await ApiService.CreateAsync("api/Alpaka", alpaka);
+        alpakaSuccessMessage = "Alpaka created successfully!";
     }
 
     private async void CreateEvent()
     {
-        if (isAdmin)
-        {
-            await ApiService.CreateAsync("Event", eventModel);
-            eventSuccessMessage = "Event created successfully!";
-        }
+        await ApiService.CreateAsync("Event", eventModel);
+        eventSuccessMessage = "Event created successfully!";
     }
 }
+

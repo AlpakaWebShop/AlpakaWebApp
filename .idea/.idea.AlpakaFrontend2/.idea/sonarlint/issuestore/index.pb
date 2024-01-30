@@ -163,8 +163,6 @@ R
 "AlpakaFrontend2/Pages/_Host.cshtml,c/0/c07b90588d715698886ec53999336759c5b95086
 \
 ,AlpakaFrontend2/Pages/CrateAlpakaEvent.razor,5/a/5a9dd78e06473c09a93acaf5519b52af572e302c
-L
-RestAlpaka/passwordHasher.cs,b/c/bc76cc6e26799352b580d6963ecb7d421842a986
 R
 "AlpakaFrontend2/Pages/Events.razor,8/8/88208c27ecbd3d4f8103a50117863c90504323d4
 n
@@ -189,8 +187,6 @@ Y
 )RestAlpaka/LoginModels/RegisterRequest.cs,c/2/c2236d08a57f7435e4d50774f8e2e38afc14fe62
 [
 +RestAlpaka/Controllers/PaymetsController.cs,5/2/52722fd99198e9b73b3eef4df43b00cf27a29cf0
-X
-(RestAlpaka/Controllers/AuthController.cs,2/5/252f006bbf27f474e20295183331d0a539c03ca8
 W
 'RestAlpaka/Managers/UserLoginService.cs,3/c/3cff9486a347d1f42f117cb303a7d6ad378dda08
 I
@@ -199,3 +195,13 @@ X
 (RestAlpaka/Controllers/UserController.cs,1/6/165c31deeef3b6ecdf2657d3ab5911d0ce5445d8
 [
 +UserManagement/appsettings.Development.json,a/b/abe6f2eb3e419bd65df565ffe5bc8665d6858e10
+O
+AlpakaFrontend2/Model/Alpaka.cs,0/a/0aff18eb751eb4d58c38dfe8bc3fcaf265d6f286
+N
+AlpakaFrontend2/Model/Event.cs,8/2/82edcd0271cc08392235e8efb543fcb328b7ac37
+J
+RestAlpaka/DTO/EventDTO.cs,d/3/d3ff9b634118db19975b52d11def515985929f58
+Q
+!AlpakaFrontend2/Model/Location.cs,5/c/5c7c23ac712968b1f8a02ea9c82242f0ca174681
+K
+RestAlpaka/DTO/AlpakaDTO.cs,5/5/55154382b22543483fd7b23f21d68f601b76b5d1

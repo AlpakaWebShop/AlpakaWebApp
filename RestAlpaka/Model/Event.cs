@@ -8,7 +8,7 @@ namespace RestAlpaka.Model
         public int Event_id { get; set; }
 
         public int Location_id { get; set; }
-
+        public bool Public { get; set; } = false;
         [DataType(DataType.Date)]
         public DateTime Event_date { get; set; }
 

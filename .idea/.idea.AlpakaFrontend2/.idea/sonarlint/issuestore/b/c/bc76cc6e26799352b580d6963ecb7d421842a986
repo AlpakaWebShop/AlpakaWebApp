@@ -1,3 +1,0 @@
-
-}csharpsquid:S101"aRename class 'passwordHasher' to match pascal case naming rules, consider using 'PasswordHasher'.(ð–Àæ
-lcsharpsquid:S1118"OAdd a 'protected' constructor or the 'static' keyword to the class declaration.(ð–Àæ
