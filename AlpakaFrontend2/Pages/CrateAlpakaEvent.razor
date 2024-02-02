@@ -3,7 +3,7 @@
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
 @inject ProtectedSessionStorage sessionStorage
-
+@inject IWebHostEnvironment _hostEnvironment
 
 @using RestAlpaka.Model
 @using Microsoft.AspNetCore.Components.Authorization
@@ -45,6 +45,12 @@
         <label for="description">Description:</label>
         <InputText id="description" @bind-Value="alpaka.description" class="form-control" />
         <ValidationMessage For="@(() => alpaka.description)" />
+    </div>
+
+    <div class="form-group">
+        <label for="Img">Alpaka Image:</label>
+        <InputFile id="Img" OnChange="@HandleAlpakaImageChange" class="form-control" />
+        <ValidationMessage For="@(() => alpaka.Img)" />
     </div>
 
 
@@ -111,11 +117,53 @@
     private Event eventModel = new Event();
     private string alpakaSuccessMessage;
     private string eventSuccessMessage;
+    private string uploadedImageUrl; 
 
-    private async void CreateAlpaka()
+    // private async void CreateAlpaka()
+    // {
+    //     await ApiService.CreateAsync("api/Alpaka", alpaka);
+    //     alpakaSuccessMessage = "Alpaka created successfully!";
+    // }
+
+    private async Task CreateAlpaka()
     {
-        await ApiService.CreateAsync("api/Alpaka", alpaka);
-        alpakaSuccessMessage = "Alpaka created successfully!";
+        try
+        {
+            alpaka.Img = uploadedImageUrl; // Assign the uploaded image URL to the Alpaka object
+            await ApiService.CreateAsync("api/Alpaka", alpaka);
+            alpakaSuccessMessage = "Alpaka created successfully!";
+        }
+        catch (Exception ex)
+        {
+            alpakaSuccessMessage = $"Error creating Alpaka: {ex.Message}";
+        }
+    }
+
+    private async Task HandleAlpakaImageChange(InputFileChangeEventArgs e)
+    {
+        try
+        {
+            if (e.File != null)
+            {
+                var imageFile = e.File;
+                var path = Path.Combine(_hostEnvironment.WebRootPath, "Media", imageFile.Name);
+
+                using var fileStream = new FileStream(path, FileMode.Create);
+                await imageFile.OpenReadStream().CopyToAsync(fileStream);
+
+                // Generate the URL for the uploaded image
+                uploadedImageUrl = $"{NavigationManager.BaseUri}Media/{imageFile.Name}";
+            }
+            else
+            {
+                throw new Exception("No file selected");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            // Log the error or display an error message as needed
+        }
     }
 
     private async void CreateEvent()

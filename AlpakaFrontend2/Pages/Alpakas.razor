@@ -16,10 +16,10 @@
     {
         @foreach (var alpaka in alpakas)
         {
-            var image = imagesList.FirstOrDefault(i => i.Name == alpaka.Alpaka_name);
+           
 
             <div class="alpaka-item">
-                <img src="@image?.ImageUrl" alt="Alpaca Image " />
+                <img src="@alpaka.Img" />
                 <p><strong>Name:</strong> @alpaka.Alpaka_name</p>
                 <p><strong>Age:</strong> @alpaka.age</p>
                 <p><strong>Color:</strong> @alpaka.color</p>
