@@ -35,7 +35,7 @@ jobs:
           path: ${{env.DOTNET_ROOT}}/AlpakaFrontend2
 
       # Insert the new build step here:
-      - name: Build AlpakaFrontend2
+      - name: Build AlpakaWebApp2
         run: dotnet build --configuration Release AlpakaWebApp2/AlpakaFrontend2/AlpakaFrontend2.csproj
 
   deploy:
