@@ -36,7 +36,7 @@ jobs:
 
       # Insert the new build step here:
       - name: Build AlpakaFrontend2
-        run: dotnet build --configuration Release AlpakaWebApp2/AlpakaFrontend2.csproj
+        run: dotnet build --configuration Release AlpakaFrontend2/AlpakaFrontend2.csproj
 
   deploy:
     runs-on: windows-latest
