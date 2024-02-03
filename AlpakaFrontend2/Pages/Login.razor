@@ -18,13 +18,13 @@
     <EditForm Model="@loginModel" OnValidSubmit="HandleLogin">
         <DataAnnotationsValidator />
 
-        <div>
+        <div class="form-group">
             <label for="username">Username</label>
             <input id="username" type="text" @bind="loginModel.Username" />
             <ValidationMessage For="@(() => loginModel.Username)" />
         </div>
 
-        <div>
+        <div class="form-group">
             <label for="password">Password</label>
             <input id="password" type="password" @bind="loginModel.Password" />
             <ValidationMessage For="@(() => loginModel.Password)" />

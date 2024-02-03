@@ -49,7 +49,8 @@
 }
 
     .topnav a:hover {
-        background-color: #ddd;
+        font-size: 1.4em; /* Ændre tekstens størrelse ved hover */
+        font-weight: bold; /* Ændre skriftvægten ved hover */
         color: black;
     }
 
@@ -62,11 +63,13 @@
     color: #333;
     font-size: 20px;
     margin-left: 10px;
-    cursor: pointer;
+  
+
 }
 
     .login-icon:hover {
-        color: #4CAF50;
+    
+        
     }
 
 /* Add responsiveness - on screens less than 500px, make the navigation links appear on top of each other, instead of next to each other */
@@ -107,6 +110,10 @@ body {
     display: inline-block;
     width: 300px;
     text-align: left;
+}
+
+.alpaka-item:hover {
+    transform: scale(1.1); /* Gør elementet lidt større */
 }
 
     .alpaka-item p {
@@ -188,7 +195,9 @@ body {
         max-height: 150px; /* Juster størrelsen efter dine ønskede mål */
     }
 
-
+    .event:hover {
+        transform: scale(1.1); /* Gør elementet lidt større */
+    }
 
 
 button {  
@@ -285,7 +294,20 @@ label {
     font-size: 24px;
 }
 
-
+input[type=password] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+input[type=email] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
 
 a {
     color: #2196F3;

@@ -10,15 +10,29 @@
                 <a class="nav-link" href="/Alpakas">ALPAKAS</a>
                 <a class="nav-link" href="/Events">EVENTS</a>
                 <a class="nav-link" href="/AlpakaWalk">ALPAKA WALK</a>
-                <a class="nav-link" href="/Register">Register</a>
+                <a class="nav-link" href="/Register">REGISTER</a>
                 @if (isAdmin)
                                 {
-                                    <a class="nav-link" href="/CreateAlpakaEvent">Admin</a>
+                                    <a class="nav-link" href="/CreateAlpakaEvent">ADMIN</a>
                                 }
+
+
+
             </div>
+
             <div class="topnav-right text-right">
                 <a class="login-icon" href="/login"><Icon Name="IconName.Cart2" /></a>
-                <a class="login-icon" href="/login"><Icon Name="IconName.PersonLock" Size=" IconSize.x4 " /></a>
+                @* <a class="login-icon" href="/login"><Icon Name="IconName.PersonLock" Size=" IconSize.x4 " /></a> *@
+                
+                    @if (isAdmin)
+                    {
+                        <a class="login-icon" href="/login"><Icon Name="IconName.PersonCheck" Size="IconSize.x4" />  </a>
+                    }
+                    else
+                    {
+                        <a class="login-icon" href="/login"><Icon Name="IconName.PersonLock" Size="IconSize.x4" /></a>
+                    }
+                
             </div>
         </div>
     </div>
