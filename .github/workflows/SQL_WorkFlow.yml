@@ -1,15 +1,15 @@
-name: .NET
+name: .NET and MySQL CI/CD
 
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
-  build:
+  build-and-test:
 
     runs-on: ubuntu-latest
 
@@ -23,11 +23,19 @@ jobs:
           MYSQL_DATABASE: addresses
         ports:
           - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
+        options: >-
+          --health-cmd="mysqladmin ping" 
+          --health-interval=10s 
+          --health-timeout=5s 
+          --health-retries=5
+        # Docker exposes MySQL through TCP. We need to wait for it to be ready before continuing with the job.
+        # `mysqladmin ping` checks if the MySQL server is ready to accept connections. We retry this check 5 times, with a 10-second interval between checks.
+        # If you have a different initialization script, you might need to adjust the health checks accordingly.
 
     steps:
-      - uses: actions/checkout@v2
-      
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
