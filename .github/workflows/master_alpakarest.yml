@@ -34,6 +34,10 @@ jobs:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
 
+      # Insert the new build step here:
+      - name: Build Alpakafrontend2
+        run: dotnet build --configuration Release Alpakafrontend2/Alpakafrontend2.csproj
+
   deploy:
     runs-on: windows-latest
     needs: build
@@ -55,3 +59,4 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2108164CD3934CD399AB058C5ADAE195 }}
           package: .
+
