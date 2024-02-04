@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - AlpakaRest
+name: Build and deploy ASP.Net Core app to Azure Web App - alpaka
 
 on:
   push:
@@ -26,20 +26,13 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/published-app
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: published-app
-          path: ${{env.DOTNET_ROOT}}/published-app
-
-      # New variable to specify the deployment folder
-      - name: Set deployment folder
-        run: echo "DEPLOY_FOLDER=AlpakaFrontend2" >> $GITHUB_ENV
-
-      - name: Build AlpakaWebApp
-        run: dotnet build --configuration Release ${{env.DOTNET_ROOT}}/${{env.DEPLOY_FOLDER}}/AlpakaFrontend2.csproj
+          name: .net-app
+          path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
     runs-on: windows-latest
@@ -52,17 +45,13 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: published-app
+          name: .net-app
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'AlpakaFrontend2'
+          app-name: 'alpaka'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2108164CD3934CD399AB058C5ADAE195 }}
-          package: ${{env.DOTNET_ROOT}}/${{env.DEPLOY_FOLDER}}
-
-
-
-
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E4F3670DBC3649F890828634DE4E4853 }}
+          package: .
