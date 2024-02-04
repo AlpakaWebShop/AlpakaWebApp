@@ -33,14 +33,14 @@ jobs:
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/AlpakaFrontend2
-          
-        # New variable to specify the deployment folder
+
+      # New variable to specify the deployment folder
       - name: Set deployment folder
         run: echo "DEPLOY_FOLDER=AlpakaFrontend2" >> $GITHUB_ENV
 
       # Insert the new build step here:
       - name: Build AlpakaWebApp
-        run: dotnet build --configuration Release AlpakaFrontend2/AlpakaFrontend2.csproj
+        run: dotnet build --configuration Release ${{env.DOTNET_ROOT}}/${{env.DEPLOY_FOLDER}}/AlpakaFrontend2.csproj
 
   deploy:
     runs-on: windows-latest
@@ -62,5 +62,6 @@ jobs:
           app-name: 'AlpakaFrontend2'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2108164CD3934CD399AB058C5ADAE195 }}
-          package: .
+          package: ${{env.DOTNET_ROOT}}/${{env.DEPLOY_FOLDER}}
+
 
