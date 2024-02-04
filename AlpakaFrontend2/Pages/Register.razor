@@ -31,7 +31,7 @@
 
     private async Task HandleRegister()
     {
-        var response = await Http.PostAsJsonAsync("https://localhost:7053/api/Authenticate/register", registrationModel);
+        var response = await Http.PostAsJsonAsync("https://usersrest.azurewebsites.net/api/Authenticate/register", registrationModel);
         if (response.IsSuccessStatusCode)
         {
             message = "Registration successful!";

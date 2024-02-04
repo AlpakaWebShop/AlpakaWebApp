@@ -17,6 +17,16 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddBlazorBootstrap();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAnyOrigin", builder =>
+    {
+        builder.AllowAnyOrigin() // Replace with your allowed origins
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 // Configure JWT Authentication
 builder.Services.AddAuthentication(options =>
 {
@@ -37,7 +47,7 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7150/") });
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://alpaka.azurewebsites.net/") });
 
 // Add other required services
 builder.Services.AddScoped<ApiService>();
@@ -50,8 +60,11 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseCors("AllowAnyOrigin");
 
 app.UseRouting();
 

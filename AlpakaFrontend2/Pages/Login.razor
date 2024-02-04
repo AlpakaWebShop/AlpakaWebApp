@@ -49,7 +49,7 @@
     {
         try
         {
-            var response = await Http.PostAsJsonAsync("https://localhost:7053/api/Authenticate/login", loginModel);
+            var response = await Http.PostAsJsonAsync("https://usersrest.azurewebsites.net/api/Authenticate/login", loginModel);
             if (response.IsSuccessStatusCode)
             {
                 var tokenResponse = await response.Content.ReadFromJsonAsync<TokenResponse>();

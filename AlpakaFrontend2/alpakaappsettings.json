@@ -6,13 +6,16 @@
     }
   },
   "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Port=3306;Database=UserDB;User=root;Password=${DATABASE_PASSWORD};"
+    "DefaultConnection": "Server=alpakadata.mysql.database.azure.com;UserID = Alpaka;Password=WebApp12;Database=alpaka;SslMode=Required;"
 
   },
+
   "JWT": {
     "ValidAudience": "http://localhost:4200",
     "ValidIssuer": "http://localhost:61955",
     "Secret": "ByYM000OLlMQG6VVVp1OH7Xzyr7gHuw1qvUC5dcGt3SNM"
   },
   "AllowedHosts": "*"
+
+
 }
