@@ -1,9 +1,10 @@
-name: Build and deploy .NET Core application to Web App alpaka
+name: Build and deploy .NET Core application to Web App alpaka That works
 on:
   push:
     branches:
     - master
 env:
+  CONNECTION_STRING_ALPAKA: ${{ secrets.CONNECTION_STRING_ALPAKA }}
   AZURE_WEBAPP_NAME: alpaka
   AZURE_WEBAPP_PACKAGE_PATH: RestAlpaka\publish
   CONFIGURATION: Release
