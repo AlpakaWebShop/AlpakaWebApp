@@ -18,9 +18,11 @@ var Configuration = builder.Configuration;
 builder.Services.AddControllers();
 
 // For Entity Framework
-builder.Services.AddDbContext<ApplicationDbContext>(opt =>
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    opt.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection")));
+    // Assuming the environment variable is directly used
+    var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING_USER");
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
 
 // For Identity
