@@ -28,10 +28,11 @@ builder.Services.AddCors(policy =>
         opt.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 });
 
-
-builder.Services.AddDbContext<AlpakaDbContext>(opt =>
+builder.Services.AddDbContext<AlpakaDbContext>(options =>
 {
-    opt.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection")));
+    // Assuming the environment variable is directly used
+    var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING_ALPAKA");
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
 
 
