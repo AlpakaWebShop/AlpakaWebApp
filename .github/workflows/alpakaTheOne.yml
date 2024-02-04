@@ -1,4 +1,4 @@
-name: Build and deploy .NET Core application to Web App alpaka
+name: Build and deploy .NET Core application to Web App alpaka That works
 on:
   push:
     branches:
