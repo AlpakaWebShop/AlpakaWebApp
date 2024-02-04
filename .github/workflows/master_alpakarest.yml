@@ -26,13 +26,13 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/AlpakaFrontend2
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/published-app
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: .net-app
-          path: ${{env.DOTNET_ROOT}}/AlpakaFrontend2
+          name: published-app
+          path: ${{env.DOTNET_ROOT}}/published-app
 
       # New variable to specify the deployment folder
       - name: Set deployment folder
@@ -40,7 +40,6 @@ jobs:
 
       - name: Build AlpakaWebApp
         run: dotnet build --configuration Release ${{env.DOTNET_ROOT}}/${{env.DEPLOY_FOLDER}}/*.csproj
-
 
   deploy:
     runs-on: windows-latest
@@ -53,15 +52,16 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: .net-app
+          name: published-app
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'AlpakaFrontend2'
+          app-name: 'AlpakaRest'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2108164CD3934CD399AB058C5ADAE195 }}
           package: ${{env.DOTNET_ROOT}}/${{env.DEPLOY_FOLDER}}
+
 
 
