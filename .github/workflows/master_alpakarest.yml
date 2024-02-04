@@ -33,6 +33,10 @@ jobs:
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/AlpakaFrontend2
+          
+        # New variable to specify the deployment folder
+      - name: Set deployment folder
+        run: echo "DEPLOY_FOLDER=AlpakaFrontend2" >> $GITHUB_ENV
 
       # Insert the new build step here:
       - name: Build AlpakaWebApp
