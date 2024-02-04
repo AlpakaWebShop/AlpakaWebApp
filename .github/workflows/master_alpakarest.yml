@@ -38,9 +38,9 @@ jobs:
       - name: Set deployment folder
         run: echo "DEPLOY_FOLDER=AlpakaFrontend2" >> $GITHUB_ENV
 
-      # Insert the new build step here:
       - name: Build AlpakaWebApp
-        run: dotnet build --configuration Release ${{env.DOTNET_ROOT}}/${{env.DEPLOY_FOLDER}}/AlpakaFrontend2.csproj
+        run: dotnet build --configuration Release ${{env.DOTNET_ROOT}}/${{env.DEPLOY_FOLDER}}/*.csproj
+
 
   deploy:
     runs-on: windows-latest
