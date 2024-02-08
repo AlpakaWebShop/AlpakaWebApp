@@ -67,11 +67,6 @@ app.Use(async (context, next) =>
 });
 
 
-app.Use(async (context, next) =>
-{
-    context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';");
-    await next.Invoke();
-});
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
